@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteMe.Views.MainPage"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    <Grid BackgroundColor="#F8F8F8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Frame Margin="20,20, 20, 10" HorizontalOptions="FillAndExpand" Padding="5"
+               VerticalOptions="FillAndExpand" HasShadow="False" BackgroundColor="White"
+               CornerRadius="10" BorderColor="White">
+            <Entry TextColor="Black" 
+                       PlaceholderColor="LightGray"
+                       Placeholder="Search"
+                       VerticalTextAlignment="Center"
+                   Text="{Binding Search, Mode=OneWayToSource}"
+                       VerticalOptions="EndAndExpand"/>
+        </Frame>
+        <CollectionView Margin="20"
+                        Grid.Row="1"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedNote, Mode=OneWayToSource}"
+                        ItemsSource="{Binding Notes, Mode=OneWay}"
+                            >
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" 
+                                   ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="15" HasShadow="False"  BackgroundColor="White"
+                           BorderColor="White">
+                        <StackLayout>
+                            <Label Text="{Binding Title, Mode=OneTime}"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="1"/>
+                            <Label FontSize="Small"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="1">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="{Binding Created, Mode=OneWay, StringFormat='{0:MMMM dd, yyyy}'}"/>
+                                            <Span Text=" | " FontAttributes="Bold"/>
+                                            <Span Text="{Binding Content, Mode=OneWay}"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
