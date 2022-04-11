@@ -27,7 +27,7 @@
                        PlaceholderColor="LightGray"
                        Placeholder="{x:Static appResources:NoteMeeLang.Search}"
                        VerticalTextAlignment="Center"
-                   Text="{Binding Search, Mode=OneWayToSource}"
+                   Text="{Binding Search}"
                        VerticalOptions="EndAndExpand"/>
         </Frame>
         <CollectionView Margin="20"

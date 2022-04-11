@@ -38,6 +38,7 @@ namespace NoteMe.ViewModels
                 SetProperty(ref _selectedNote, value);
                 if(value != null)
                 {
+                    Search = null;
                     INavigationParameters parameters = new NavigationParameters();
                     parameters.Add("note", value);
                     NavigationService.NavigateAsync("NoteEntryPage", parameters);
@@ -90,8 +91,7 @@ namespace NoteMe.ViewModels
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            LoadNotes();
-            Search = null;
+            LoadNotes();           
         }
     }
 }
