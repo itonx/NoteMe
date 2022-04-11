@@ -1,4 +1,5 @@
 ﻿using NoteMe.Models;
+using NoteMe.Properties;
 using NoteMe.Services;
 using Prism.Commands;
 using Prism.Navigation;
@@ -40,7 +41,7 @@ namespace NoteMe.ViewModels
 
         private async void DeleteNoteAsync()
         {
-            bool delete = await _dialogService.DisplayAlertAsync("Alert", "Delete this note?", "Continue", "Cancel");
+            bool delete = await _dialogService.DisplayAlertAsync(NoteMeeLang.DialogAlert, NoteMeeLang.DialogDeleteNoteQuestion, NoteMeeLang.DialogButtonContinue, NoteMeeLang.DialogButtonCancel);
 
             if (delete)
             {
@@ -48,11 +49,11 @@ namespace NoteMe.ViewModels
 
                 if(result > 0)
                 {
-                    await _dialogService.DisplayAlertAsync("Alert", "Your note has been deleted!!", "OK");
+                    await _dialogService.DisplayAlertAsync(NoteMeeLang.DialogAlert, NoteMeeLang.DialogDeleteNoteConfirmation, NoteMeeLang.DialogButtonOK);
                 }
                 else
                 {
-                    await _dialogService.DisplayAlertAsync("Alert", "Something went wrong. The note wasn't deleted!!", "OK");
+                    await _dialogService.DisplayAlertAsync(NoteMeeLang.DialogAlert, NoteMeeLang.DialogDeleteNoteError, NoteMeeLang.DialogButtonOK);
                 }
                 await NavigationService.GoBackAsync();
             }
@@ -63,11 +64,11 @@ namespace NoteMe.ViewModels
             int result = await _noteService.SaveNoteAsync(NoteToEdit);
             if (result > 0)
             {
-                await _dialogService.DisplayAlertAsync("Alert", "Your note has been saved!!", "OK");
+                await _dialogService.DisplayAlertAsync(NoteMeeLang.DialogAlert, NoteMeeLang.DialogSaveNoteConfirmation, NoteMeeLang.DialogButtonOK);
             }
             else
             {
-                await _dialogService.DisplayAlertAsync("Alert", "Something went wrong. The note wasn't saved!!", "OK");
+                await _dialogService.DisplayAlertAsync(NoteMeeLang.DialogAlert, NoteMeeLang.DialogSaveNoteError, NoteMeeLang.DialogButtonOK);
             }
             await NavigationService.GoBackAsync();
         }

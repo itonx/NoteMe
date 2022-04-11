@@ -5,6 +5,7 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:fa="clr-namespace:FontAwesome"
+             xmlns:appResources="clr-namespace:NoteMe.Properties"
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
@@ -24,7 +25,7 @@
                CornerRadius="10" BorderColor="White">
             <Entry TextColor="Black" 
                        PlaceholderColor="LightGray"
-                       Placeholder="Search"
+                       Placeholder="{x:Static appResources:NoteMeeLang.Search}"
                        VerticalTextAlignment="Center"
                    Text="{Binding Search, Mode=OneWayToSource}"
                        VerticalOptions="EndAndExpand"/>

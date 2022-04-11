@@ -20,7 +20,7 @@ namespace NoteMe.Services
 
         public Task<List<Note>> GetNotesAsync()
         {
-            return _database.Table<Note>().ToListAsync();
+            return _database.Table<Note>().OrderByDescending(notes => notes.Modified).ToListAsync();
         }
 
         public Task<Note> GetNoteAsync(long id)

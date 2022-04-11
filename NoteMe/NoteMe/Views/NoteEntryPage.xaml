@@ -4,9 +4,10 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:fa="clr-namespace:FontAwesome"
+             xmlns:appResources="clr-namespace:NoteMe.Properties"
              x:Class="NoteMe.Views.NoteEntryPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Order="Secondary" Text="Delete" Priority="0" Command="{Binding DeleteNoteCommand}"/>
+        <ToolbarItem Order="Secondary" Text="{x:Static appResources:NoteMeeLang.DeleteNote}" Priority="0" Command="{Binding DeleteNoteCommand}"/>
         <ToolbarItem Order="Primary" Priority="1" Command="{Binding SaveNoteCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:FontAwesomeIcons.Check}"/>
@@ -16,6 +17,7 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Entry Text="{Binding NoteToEdit.Title}"
+                   Placeholder="{x:Static appResources:NoteMeeLang.NoteTitle}"
                    VerticalOptions="Start" 
                    HorizontalOptions="FillAndExpand"
                    FontSize="Large" 
