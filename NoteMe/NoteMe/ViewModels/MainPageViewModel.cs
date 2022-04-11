@@ -91,6 +91,7 @@ namespace NoteMe.ViewModels
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             LoadNotes();
+            Search = null;
         }
     }
 }

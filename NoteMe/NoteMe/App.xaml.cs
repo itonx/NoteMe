@@ -1,8 +1,11 @@
+using NoteMe.Properties;
 using NoteMe.Services;
 using NoteMe.ViewModels;
 using NoteMe.Views;
 using Prism;
 using Prism.Ioc;
+using System.Globalization;
+using System.Threading;
 using Xamarin.Essentials.Implementation;
 using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
@@ -18,8 +21,8 @@ namespace NoteMe
 
         protected override async void OnInitialized()
         {
-            InitializeComponent();
-
+            InitializeComponent();            
+            LoadLangugage();
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
@@ -32,6 +35,14 @@ namespace NoteMe
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
 
             containerRegistry.RegisterSingleton<INoteService, LocalNoteService>();
+        }
+
+        private void LoadLangugage()
+        {
+            //CultureInfo language = new CultureInfo("es");
+            CultureInfo language = CultureInfo.InstalledUICulture;
+            Thread.CurrentThread.CurrentUICulture = language;
+            NoteMeeLang.Culture = language;
         }
     }
 }
