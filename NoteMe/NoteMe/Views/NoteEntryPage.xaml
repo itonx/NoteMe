@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:fa="clr-namespace:FontAwesome"
              x:Class="NoteMe.Views.NoteEntryPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Delete" Order="Primary" Priority="1" Command="{Binding DeleteNoteCommand}"/>
-        <ToolbarItem Name="Save" Order="Primary" Priority="0" Command="{Binding SaveNoteCommand}"/>
+        <ToolbarItem Order="Secondary" Text="Delete" Priority="0" Command="{Binding DeleteNoteCommand}"/>
+        <ToolbarItem Order="Primary" Priority="1" Command="{Binding SaveNoteCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:FontAwesomeIcons.Check}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
