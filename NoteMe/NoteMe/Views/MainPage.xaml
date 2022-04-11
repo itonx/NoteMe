@@ -4,10 +4,15 @@
              x:Class="NoteMe.Views.MainPage"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:fa="clr-namespace:FontAwesome"
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+        <ToolbarItem Command="{Binding AddCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FASolid" Glyph="{x:Static fa:FontAwesomeIcons.Plus}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <Grid BackgroundColor="#F8F8F8">
         <Grid.RowDefinitions>
@@ -28,8 +33,7 @@
                         Grid.Row="1"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedNote, Mode=OneWayToSource}"
-                        ItemsSource="{Binding Notes, Mode=OneWay}"
-                            >
+                        ItemsSource="{Binding Notes, Mode=OneWay}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" 
                                    ItemSpacing="10"/>

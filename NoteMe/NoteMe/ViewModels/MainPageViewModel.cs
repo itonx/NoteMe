@@ -1,4 +1,5 @@
 ﻿using NoteMe.Models;
+using NoteMe.Services;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -11,6 +12,7 @@ namespace NoteMe.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        private readonly INoteService _noteService;
         private List<Note> _tmpNotes;
         private List<Note> _notes;
         public List<Note> Notes
@@ -43,7 +45,6 @@ namespace NoteMe.ViewModels
             }
         }
         private string _search;
-
         public string Search
         {
             get 
@@ -59,14 +60,14 @@ namespace NoteMe.ViewModels
                 }
             }
         }
-
         public DelegateCommand AddCommand { get; set; }
 
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(INavigationService navigationService, INoteService noteService)
             : base(navigationService)
         {
             Title = "NoteMe";
             AddCommand = new DelegateCommand(Add);
+            _noteService = noteService;
             LoadNotes();
         }
 
@@ -83,7 +84,7 @@ namespace NoteMe.ViewModels
 
         async private void LoadNotes()
         {
-            Notes = await NoteStaticService.DB.GetNotesAsync();
+            Notes = await _noteService.GetNotesAsync();
             _tmpNotes = Notes;
         }
 

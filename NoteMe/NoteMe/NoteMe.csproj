@@ -5,6 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Fonts\FontAwesome6Brands-Regular-400.otf" />
+    <None Remove="Fonts\FontAwesome6Free-Regular-400.otf" />
+    <None Remove="Fonts\FontAwesome6Free-Solid-900.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\FontAwesome6Brands-Regular-400.otf" />
+    <EmbeddedResource Include="Fonts\FontAwesome6Free-Regular-400.otf" />
+    <EmbeddedResource Include="Fonts\FontAwesome6Free-Solid-900.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials.Interfaces" Version="1.5.3.2" />

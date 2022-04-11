@@ -1,3 +1,4 @@
+using NoteMe.Services;
 using NoteMe.ViewModels;
 using NoteMe.Views;
 using Prism;
@@ -29,6 +30,8 @@ namespace NoteMe
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<NoteEntryPage, NoteEntryPageViewModel>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+
+            containerRegistry.RegisterSingleton<INoteService, LocalNoteService>();
         }
     }
 }
