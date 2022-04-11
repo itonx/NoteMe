@@ -1,4 +1,5 @@
 ﻿using NoteMe.Models;
+using NoteMe.Services;
 using Prism.Commands;
 using Prism.Navigation;
 using System;
@@ -10,6 +11,7 @@ namespace NoteMe.ViewModels
 {
     public class NoteEntryPageViewModel : ViewModelBase, INavigationAware
     {
+        private readonly INoteService _noteService;
         public Note _note;
         public Note NoteToEdit
         {
@@ -25,22 +27,23 @@ namespace NoteMe.ViewModels
         public DelegateCommand SaveNoteCommand { get; set; }
         public DelegateCommand DeleteNoteCommand { get; set; }
 
-        public NoteEntryPageViewModel(INavigationService navigationService) : base(navigationService)
+        public NoteEntryPageViewModel(INavigationService navigationService, INoteService noteService) : base(navigationService)
         {
             NoteToEdit = new Note();
             SaveNoteCommand = new DelegateCommand(SaveNote);
             DeleteNoteCommand = new DelegateCommand(DeleteNoteAsync);
+            _noteService = noteService;
         }
 
         private async void DeleteNoteAsync()
         {
-            await NoteStaticService.DB.DeleteNoteAsync(NoteToEdit);
+            await _noteService.DeleteNoteAsync(NoteToEdit);
             await NavigationService.GoBackAsync();
         }
 
         private async void SaveNote()
         {
-            await NoteStaticService.DB.SaveNoteAsync(NoteToEdit);
+            await _noteService.SaveNoteAsync(NoteToEdit);
             await NavigationService.GoBackAsync();
         }
 
