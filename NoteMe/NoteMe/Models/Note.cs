@@ -18,7 +18,7 @@ namespace NoteMe.Models
 
         public Note()
         {
-            Title = null;
+            Title = Content = string.Empty;
             NoteUUID = 0;
             Created = Modified = DateTime.Now;
         }
