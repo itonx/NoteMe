@@ -1,5 +1,5 @@
 # NoteMe
-Simple android application for create notes using Xamarin Forms.
+Simple android application for creating notes using Xamarin Forms.
 
 Main features:
 * Add notes
